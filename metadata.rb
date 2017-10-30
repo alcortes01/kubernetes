@@ -6,6 +6,6 @@ description 'Installs/Configures kubernetes'
 long_description 'Installs/Configures kubernetes'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
-issues_url 'https://github.com/acortes01/kubernetes/issues'
-source_url 'https://github.com/acortes01/kubernetes'
+issues_url 'https://github.com/alcortes01/kubernetes/issues'
+source_url 'https://github.com/alcortes01/kubernetes'
 supports 'centos', '~= 7.0'
