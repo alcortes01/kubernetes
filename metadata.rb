@@ -1,20 +1,11 @@
 name 'kubernetes'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
-license 'All Rights Reserved'
+maintainer 'Alberto Cortes'
+maintainer_email 'alcortes01@gmail.com'
+license 'Apache v2.0'
 description 'Installs/Configures kubernetes'
 long_description 'Installs/Configures kubernetes'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
-
-# The `issues_url` points to the location where issues for this cookbook are
-# tracked.  A `View Issues` link will be displayed on this cookbook's page when
-# uploaded to a Supermarket.
-#
-# issues_url 'https://github.com/<insert_org_here>/kubernetes/issues'
-
-# The `source_url` points to the development repository for this cookbook.  A
-# `View Source` link will be displayed on this cookbook's page when uploaded to
-# a Supermarket.
-#
-# source_url 'https://github.com/<insert_org_here>/kubernetes'
+issues_url 'https://github.com/acortes01/kubernetes/issues'
+source_url 'https://github.com/acortes01/kubernetes'
+supports 'centos', '~= 7.0'

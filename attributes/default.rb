@@ -1,0 +1,5 @@
+default['kubernetes']['master_url'] = 'http://master.vagrant.test:8080'
+default['kubernetes']['etcd_url'] = 'http://master.vagrant.test:2379'
+default['kubernetes']['api_server'] = 'http://master.vagrant.test:8080'
+default['kubernetes']['ssl_key'] = '/etc/pki/tls/private/serviceaccount.key'
+default['kubernetes']['flanneld_iface'] = 'enp0s8'
