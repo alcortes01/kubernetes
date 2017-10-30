@@ -1,7 +1,7 @@
 name 'kubernetes'
 maintainer 'Alberto Cortes'
 maintainer_email 'alcortes01@gmail.com'
-license 'Apache v2.0'
+license 'Apache-2.0'
 description 'Installs/Configures kubernetes'
 long_description 'Installs/Configures kubernetes'
 version '0.1.0'

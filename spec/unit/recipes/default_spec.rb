@@ -21,7 +21,7 @@ describe 'kubernetes::default' do
     end
 
     # all servers
-  #it 'adds docker yum repo'
+    # it 'adds docker yum repo'
     it 'installs kubernetes'
     it 'installs etcd'
     it 'installs flannel'
@@ -48,6 +48,5 @@ describe 'kubernetes::default' do
     it 'start flanneld'
     it 'start docker'
     it 'configure kubectl'
-
   end
 end
