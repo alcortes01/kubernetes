@@ -15,6 +15,44 @@ template '/etc/etcd/etcd.conf' do
   mode '0644'
 end
 
+service 'etcd' do
+  supports status: true
+  action [:enable, :restart]
+end
+
+execute 'create etcd /kube-flannel/network' do
+  command 'etcdctl mkdir /kube-flannel/network'
+  action :run
+  not_if 'etcdctl ls -recursive | grep /kube-flannel/network'
+end
+
+etcd_config = '{ "Network":"172.30.0.0/16", "SubnetLen":24, "Backend": { "Type": "vxlan" } }'
+
+execute 'create etcd /kube-flannel/network/config' do
+  command "etcdctl mk /kube-flannel/network/config '#{etcd_config}'"
+  action :run
+  not_if 'etcdctl ls -recursive | grep /kube-flannel/network/config'
+end
+
+template '/etc/sysconfig/flanneld' do
+  source 'flanneld.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[restart flanneld]', :immediately
+end
+
+service 'flanneld' do
+  supports status: true
+  action [:enable, :start]
+end
+
+service 'restart flanneld' do
+  service_name 'flanneld'
+  supports status: true
+  action :nothing
+end
+
 execute 'create service key' do
   command "openssl genrsa -out #{node['kubernetes']['ssl_key']} 2048"
   action :run
@@ -58,25 +96,6 @@ service 'restart kube-controller-manager' do
   service_name 'kube-controller-manager'
   supports status: true
   action :nothing
-end
-
-service 'etcd' do
-  supports status: true
-  action [:enable, :start]
-end
-
-execute 'create etcd /kube-centos/network' do
-  command 'etcdctl mkdir /kube-centos/network'
-  action :run
-  not_if 'etcdctl ls -recursive | grep /kube-centos/network'
-end
-
-etcd_config = '{ "Network":"172.30.0.0/16", "SubnetLen":24, "Backend": { "Type": "vxlan" } }'
-
-execute 'create etcd /kube-centos/network/config' do
-  command "etcdctl mk /kube-centos/network/config '#{etcd_config}'"
-  action :run
-  not_if 'etcdctl ls -recursive | grep /kube-centos/network/config'
 end
 
 service 'kube-scheduler' do

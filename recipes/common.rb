@@ -24,6 +24,10 @@ template '/etc/kubernetes/config' do
   source 'config.erb'
 end
 
+package 'flannel' do
+  action :install
+end
+
 # ruby_block "add master url to kubernetes config" do
 #   block do
 #     file = Chef::Util::FileEdit.new("/etc/kubernetes/config")

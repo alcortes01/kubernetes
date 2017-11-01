@@ -5,7 +5,7 @@ FLANNEL_ETCD_ENDPOINTS="<%= node['kubernetes']['etcd_url'] %>"
 
 # etcd config key.  This is the configuration key that flannel queries
 # For address range assignment
-FLANNEL_ETCD_PREFIX="/kube-centos/network"
+FLANNEL_ETCD_PREFIX="/kube-flannel/network"
 
 # Any additional options that you want to pass
 FLANNEL_OPTIONS="--iface=<%= node['kubernetes']['flanneld_iface'] %>"
